@@ -6,10 +6,12 @@ import (
 )
 
 func RemoveAt(arr []int, index int) ([]int, error) {
+	//Проверка на выход индекса за приделы массива
 	if index < 0 || len(arr) <= index {
 		return arr, errors.New("index out of range")
 	}
 
+	//объеденяем части до и после элемента
 	arr = append(arr[:index], arr[index+1:]...)
 	return arr, nil
 }

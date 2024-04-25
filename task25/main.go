@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+// sleep использует функцию time.After
+// Она нужна для создания канала, который отправляет сигнал по истечении заданного времени.
 func sleep(dur time.Duration) {
 	<-time.After(dur)
 }
