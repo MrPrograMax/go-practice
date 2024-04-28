@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 /*
 Задание 2
@@ -9,7 +12,16 @@ import "fmt"
 */
 
 func main() {
+	var wg sync.WaitGroup //Примитив для синхронизации группы горутин
 	arr := []int{2, 4, 6, 8, 10}
-	fmt.Printf("Arr: %v\n", arr)
 
+	for _, item := range arr {
+		wg.Add(1) //Увеличиваем счетчик горутин
+		go func(value int) {
+			defer wg.Done()             // Уменьшаем счетчик, когда горутина завершается.
+			fmt.Print(value*value, " ") //Выводим вычисленное значение
+		}(item)
+	}
+	//Дожидаемся окончания работы всех горутин
+	wg.Wait()
 }
