@@ -22,7 +22,7 @@ import (
 */
 
 func main() {
-	//Считываем ввод пользователя с консоли
+	// Считываем ввод пользователя с консоли
 	var workersCount int
 	fmt.Print("Count of workers: ")
 	_, err := fmt.Scan(&workersCount)
@@ -60,7 +60,7 @@ func main() {
 func producer(ctx context.Context, ch chan int, wg *sync.WaitGroup) {
 	defer wg.Done() // Уменьшаем счетчик горутин
 	for {
-		//select позволяет ждать нескольких операций на канале.
+		// select позволяет ждать нескольких операций на канале.
 		select {
 		case <-ctx.Done(): // Закрытие канала при завершении работы
 			fmt.Println("Producer has completed its work!")
@@ -76,7 +76,7 @@ func producer(ctx context.Context, ch chan int, wg *sync.WaitGroup) {
 func consumer(ctx context.Context, ch chan int, wg *sync.WaitGroup, id int) {
 	defer wg.Done() // Уменьшаем счетчик горутин
 	for {
-		//select позволяет ждать нескольких операций на канале.
+		// select позволяет ждать нескольких операций на канале.
 		select {
 		case <-ctx.Done(): // Закрытие канала при завершении работы
 			fmt.Printf("Worker [%d] has completed its work!\n", id)
