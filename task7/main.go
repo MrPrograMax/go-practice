@@ -1,1 +1,5 @@
-package task7
+package main
+
+func main() {
+
+}
